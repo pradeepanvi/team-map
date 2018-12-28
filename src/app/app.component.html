@@ -5,8 +5,8 @@
   <div class="col-sm-6">
     <input type="text" class="form-control" placeholder="Search by Name" [(ngModel)]="value">
     <ul>
-      <li *ngFor="let map of mapData | filter:value">
-        <aside>
+      <li *ngFor="let map of mapData | filter:value; let i = index">
+        <aside (click)="listclicked(i)">
           <img [src]="map.mainPhotoUrl">
           <h4>{{map.name}}</h4>
           <p>Price: ${{map.ratePerHour}}</p>
@@ -17,13 +17,21 @@
     </ul>
   </div>
   <div class="col-sm-6">
-      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12" (mapClick)="mapClicked($event)">
         <agm-marker
             *ngFor="let m of markerData | filter:value; let i = index"
-            (markerClick)="clickedMarker(i)"
+            (markerClick)="clickedMarker($event, i)"
             [latitude]="m.lat" 
             [longitude]="m.lon"
-            [iconUrl]="iconUrl"></agm-marker>
+            [iconUrl]="m.iconUrl"></agm-marker>
+        <agm-circle [latitude]="lat2" [longitude]="lng2"
+            (radiusChange)="radiusChnage($event)"
+            (dragEnd)="dragEnd($event)" 
+            [radius]="500"
+            [fillColor]="'red'"
+            [circleDraggable]="true"
+            [editable]="true">
+        </agm-circle>        
       </agm-map>
   </div>
 </div>
