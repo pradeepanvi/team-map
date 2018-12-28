@@ -17,7 +17,7 @@
     </ul>
   </div>
   <div class="col-sm-6">
-      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12" (mapClick)="mapClicked($event)">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12">
         <agm-marker
             *ngFor="let m of markerData | filter:value; let i = index"
             (markerClick)="clickedMarker($event, i)"

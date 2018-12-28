@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  value:string;
   title: string = 'My first AGM project';
   markerData:any;
   mapData:any;
